@@ -61,7 +61,38 @@ public class CreaProperties {
      * @return <code>{@link Map }&lt;{@link String }, {@link String }&gt;</code>: A key-value paired map.
      */
     public Map<String, String> getProperties() {
+        System.out.println(this.toString());
         return mProperties;
+    }
+    
+    /**
+     * 
+     * @param key
+     * @return 
+     */
+    public String getProperty(String key) {
+        return getProperties().get(key);
+    }
+    
+    /**
+     * 
+     * @param key
+     * @param defaultValue
+     * @return 
+     */
+    public String getProperty(String key, String defaultValue) {
+        return getProperties().getOrDefault(key, defaultValue);
+    }
+    
+    /**
+     * 
+     * @param key
+     * @param value
+     * @return 
+     */
+    public CreaProperties setProperty(String key, String value) {
+        mProperties.put(key, value);
+        return this;
     }
 
     /*
@@ -191,7 +222,7 @@ public class CreaProperties {
             String no_comments = reader.readLine().split("#")[0];
             int eqind = no_comments.indexOf('=');
             if ( eqind != -1 )
-                mProperties.put(no_comments.substring(0, eqind), no_comments.substring(eqind, no_comments.length()));
+                mProperties.put(no_comments.substring(0, eqind), no_comments.length() > eqind ? no_comments.substring(eqind + 1, no_comments.length()) : null);
         }
     }
 }
