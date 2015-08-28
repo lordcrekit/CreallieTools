@@ -2,13 +2,14 @@ package Creallie.Tools.util;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 /**
- * CreaProperties is a replacement for the {@link Properties } class. It can actually be used to quickly load, add to, and save files.
+ * CreaProperties is a replacement for the {@link Properties } class. Thread safe. It can actually be used to quickly load, add to, and save files.
  *
  * @author William A Norman (Lordcrekit@gmail.com, normanwi@msu.edu)
  */
@@ -26,11 +27,11 @@ public class CreaProperties {
      * Default constructor for CreaProperties.
      */
     public CreaProperties() {
-        mProperties = new HashMap<>();
+        mProperties = Collections.synchronizedMap(new HashMap<>());
     }
 
     /**
-     * Copy contructor for CreaProperties.
+     * Copy constructor for CreaProperties.
      *
      * @param orig <code>{@link CreaProperties }</code>: The object to copy.
      */
@@ -185,7 +186,7 @@ public class CreaProperties {
      * @throws IOException
      */
     private void load( BufferedReader reader ) throws IOException {
-        mProperties = new HashMap<>();
+        mProperties = Collections.synchronizedMap(new HashMap<>());
         while ( reader.ready() ) {
             String no_comments = reader.readLine().split("#")[0];
             int eqind = no_comments.indexOf('=');
