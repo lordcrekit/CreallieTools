@@ -173,7 +173,7 @@ public class CreaProperties {
         if ( comments != null && !comments.isEmpty() )
             for ( String i : comments.split("\n") )
                 writer.write('#' + i + "\n");
-        writer.write(new SimpleDateFormat("'#Created on 'yyyy-MM-dd'T'HH.mm.ss'GMT'Z").format(new Date()));
+        writer.write(new SimpleDateFormat("'#Created on 'yyyy-MM-dd'T'HH.mm.ss'GMT'Z'\n'").format(new Date()));
         for ( String key : mProperties.keySet() )
             writer.write(key + "=" + mProperties.get(key) + "\n");
         writer.flush();
