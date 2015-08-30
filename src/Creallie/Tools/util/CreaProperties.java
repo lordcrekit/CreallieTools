@@ -1,3 +1,26 @@
+/*
+ * The MIT License
+ *
+ * Copyright 2015 William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package Creallie.Tools.util;
 
 import java.io.*;
@@ -64,33 +87,36 @@ public class CreaProperties {
         System.out.println(this.toString());
         return mProperties;
     }
-    
+
     /**
-     * 
+     * Gets the value associated with the given key from the properties, or null if the key does not exist.
+     *
      * @param key
-     * @return 
+     * @return
      */
-    public String getProperty(String key) {
+    public String getProperty( String key ) {
         return getProperties().get(key);
     }
-    
+
     /**
-     * 
+     * Gets the value associated with the given key from the properties, or the given default value if the key does not exist.
+     *
      * @param key
      * @param defaultValue
-     * @return 
+     * @return
      */
-    public String getProperty(String key, String defaultValue) {
+    public String getProperty( String key, String defaultValue ) {
         return getProperties().getOrDefault(key, defaultValue);
     }
-    
+
     /**
-     * 
-     * @param key
-     * @param value
-     * @return 
+     * Sets the given key to the given value.
+     *
+     * @param key <code>{@link String }</code>: The key that is being set.
+     * @param value <code>{@link String }</code>: The value being saved to the key.
+     * @return <code>{@link CreaProperties }</code>: Pointer back to this object.
      */
-    public CreaProperties setProperty(String key, String value) {
+    public CreaProperties setProperty( String key, String value ) {
         mProperties.put(key, value);
         return this;
     }
@@ -99,7 +125,7 @@ public class CreaProperties {
      * ================================================ UTILITY FUNCTIONS ===============================================
      */
     /**
-     * Saves the propreties to the given OutputStream. The file will also contain a timestamp of when it was saved.
+     * Saves the properties to the given OutputStream. The file will also contain a timestamp of when it was saved.
      *
      * @param outstream <code>{@link OutputStream }</code>: The OutputStream write to.
      * @param comments  <code>{@link String }</code>: Comments to save with the file.
@@ -112,7 +138,7 @@ public class CreaProperties {
     }
 
     /**
-     * Saves the propreties using the given Writer. The file will also contain a timestamp of when it was saved.
+     * Saves the properties using the given Writer. The file will also contain a timestamp of when it was saved.
      *
      * @param writer   <code>{@link Writer }</code>: The Writer use.
      * @param comments <code>{@link String }</code>: Comments to save with the file.
