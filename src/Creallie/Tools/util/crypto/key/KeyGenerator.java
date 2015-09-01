@@ -36,7 +36,7 @@ public class KeyGenerator {
     /**
      * Generates an ID using the specified alphabet and length. This is not guaranteed to be unique, but probably is.
      * <p>
-     * @param sections
+     * @param sections <code>{@link KeySection }...</code>: All the KeySections that the new ID will be made from.
      * @return <code>{@link String }</code>: The generated ID.
      */
     public static String generateID( KeySection... sections ) {

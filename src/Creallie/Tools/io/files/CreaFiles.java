@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.files;
+package Creallie.Tools.io.files;
 
 import java.io.File;
 import java.io.IOException;
