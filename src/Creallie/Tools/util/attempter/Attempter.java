@@ -64,16 +64,31 @@ public class Attempter {
     }
 
     /**
-     * Attempts to run the given Callable within the set timeout time before it gives up.
+     * Attempts to run the given Callable within the set timeout time before it gives up. Always uses milliseconds.
      *
-     * @param <T>
-     * @param callable
-     * @param timeout
-     * @param timeUnit
-     * @param cancelThread
+     * @param <T> <code>T</code>: The return type of your Callable.
+     * @param callable <code>{@link Callable }</code>: The Callable that will be run.
+     * @param timeout <code>long</code>: The number of milliseconds to wait for.
+     * @param cancelThread <code>boolean</code>: If the thread should be shut down on failure.
      * @return
      * @throws TimeoutException
-     * @throws java.util.concurrent.ExecutionException
+     * @throws ExecutionException
+     */
+    public static <T> T attemptTimeout( Callable<T> callable, long timeout, boolean cancelThread ) throws TimeoutException, ExecutionException {
+        return attemptTimeout(callable, timeout, TimeUnit.MILLISECONDS, cancelThread);
+    }
+
+    /**
+     * Attempts to run the given Callable within the set timeout time before it gives up. Allows you to specify the time unit being used.
+     *
+     * @param <T> <code>T</code>: The return type of your Callable.
+     * @param callable <code>{@link Callable }</code>: The Callable that will be run.
+     * @param timeout <code>long</code>: The number of specified TimeUnits to wait for.
+     * @param timeUnit <code>{@link TimeUnit }</code>: The TimeUnit that is being used.
+     * @param cancelThread <code>boolean</code>: If the thread should be shut down on failure.
+     * @return
+     * @throws TimeoutException
+     * @throws ExecutionException
      */
     public static <T> T attemptTimeout( Callable<T> callable, long timeout, TimeUnit timeUnit, boolean cancelThread ) throws TimeoutException, ExecutionException {
         try {

@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
+ * Additional methods for dealing with files and file structures.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
@@ -55,7 +56,7 @@ public class CreaFiles {
 
     /**
      * Deletes an entire directory and all it's sub folders and files.
-     * 
+     *
      * @param directory <code>{@link File }</code>: The directory you wish to delete.
      * @throws IOException If something goes wrong trying to delete the files.
      */
