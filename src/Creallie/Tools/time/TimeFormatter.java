@@ -21,85 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util;
+package Creallie.Tools.time;
 
 /**
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
- * @param <T>
- * @param <G>
  */
-public final class Tuple<T, G> {
+public final class TimeFormatter {
 
     /*
      * ================================================ MEMBER VARIABLES ================================================
      */
-    private T mFirst;
-    private G mSecond;
-
     /*
      * ================================================== CONSTRUCTORS ==================================================
      */
-    /**
-     * Default constructor for Tuple.
-     */
-    public Tuple() {
-    }
-
-    /**
-     *
-     * @param first
-     * @param second
-     */
-    public Tuple( T first, G second ) {
-        this.mFirst = first;
-        this.mSecond = second;
-    }
-
+    /*
+     * ================================================ PRIMARY FUNCTIONS ===============================================
+     */    
     /*
      * =============================================== GETTERS AND SETTERS ==============================================
      */
-    /**
-     * 
-     * @return 
-     */
-    public T getFirst() {
-        return this.mFirst;
-    }
-    
-    /**
-     * 
-     * @param val
-     * @return 
-     */
-    public Tuple<T,G> setFirst(T val) {
-        this.mFirst = val;
-        return this;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public G getSecond() {
-        return this.mSecond;
-    }
-    
-    /**
-     * 
-     * @param val
-     * @return 
-     */
-    public Tuple<T,G> setSecond(G val) {
-        this.mSecond = val;
-        return this;
-    }
-    
     /*
      * ================================================ VISUAL FUNCTIONS ================================================
      */
-    @Override
-    public String toString() {
-      throw new UnsupportedOperationException();
-    }
+    /*
+     * ================================================ PRIVATE FUNCTIONS ===============================================
+     */
 }
