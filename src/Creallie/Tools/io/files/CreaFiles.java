@@ -71,32 +71,31 @@ public class CreaFiles {
      * =============================================== GETTERS AND SETTERS ==============================================
      */
     /**
+     * Gets the App Data file pathname for this operating system.
+     *
+     * @return <code>{@link String }</code>: The pathname to the App Data file for this OS.
+     * @throws IOException
+     */
+    public static String getAppData() throws IOException {
+        String OS = (System.getProperty("os.name")).toUpperCase();
+        if ( OS.contains("WIN") )
+            return System.getenv("AppData");
+        else if ( OS.contains("MAC") )
+            return System.getProperty("user.home") + "/Library/Application " + "Support";
+        else if ( OS.contains("NUX") )
+            return System.getProperty("user.home");
+        else
+            throw new IOException("Unkown operating system!");
+    }
+
+    /**
      * Gets the App Data file for this operating system.
      *
      * @return <code>{@link File }</code>: The App Data file for this OS.
      * @throws IOException If the OS is unknown.
      */
     public static File getAppDataFile() throws IOException {
-        String OS = (System.getProperty("os.name")).toUpperCase();
-        if ( OS.contains("WIN") )
-            return new File(System.getenv("AppData"));
-        else if ( OS.contains("MAC") )
-            return new File(System.getProperty("user.home") + "/Library/Application " + "Support");
-        else if ( OS.contains("NUX") )
-            return new File(System.getProperty("user.home"));
-        else
-            throw new IOException("Unkown operating system!");
-    }
-
-    /**
-     * Gets the Temp file for this operating system.
-     *
-     * @return <code>{@link File }</code>: The Temp file for this OS.
-     * @throws IOException If the OS is unknown.
-     */
-    public static File getTempFile() throws IOException {
-        String OS = (System.getProperty("os.name")).toUpperCase();
-        throw new UnsupportedOperationException("TODO: THIS");
+        return new File(getAppData());
     }
 
     /*

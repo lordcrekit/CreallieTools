@@ -38,6 +38,15 @@ public class ImageResizing {
      */
     /**
      *
+     * @param orig
+     * @return
+     */
+    public static BufferedImage deepCopy( Image orig ) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     *
      * @param image
      * @param maxWidth
      * @param maxHeight
