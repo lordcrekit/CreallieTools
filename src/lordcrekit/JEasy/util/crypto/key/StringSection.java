@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util.crypto.key;
+package lordcrekit.util.crypto.key;
 
 /**
  *

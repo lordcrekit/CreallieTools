@@ -21,25 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util.attempter;
+package lordcrekit.util.crypto.key;
 
 /**
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
-public class AllAttemptsFailedException extends Exception {
+public class TimestampSection implements KeySection {
+
+    /*
+     * ================================================ MEMBER VARIABLES ================================================
+     */
+    private final int mLength;
 
     /*
      * ================================================== CONSTRUCTORS ==================================================
      */
     /**
-     * Constructor for AllAttemptsFailedException.
+     * Constructs a new TimestampSection.
      *
-     * @param message <code>{@link String }</code>: The detail message. The detail message is saved for later retrieval by the {@link #getMessage() } method.
-     * @param lastCause <code>{@link Throwable }</code>: The last cause (which is saved for later retrieval by the {@link #getCause() } method). (A
-     * <code>null</code> value is permitted, and indicates that the cause is nonexistent or unknown.)
+     * @param length
      */
-    public AllAttemptsFailedException( String message, Throwable lastCause ) {
-        super(message, lastCause);
+    public TimestampSection( int length ) {
+        mLength = length;
     }
+
+    /*
+     * ================================================ PRIMARY FUNCTIONS ===============================================
+     */
+    @Override
+    public StringBuilder generate( StringBuilder strb ) {
+        if ( Long.toHexString(mLength).length() > mLength )
+            throw new RuntimeException("Length not enough!");
+        else
+            return strb.append(String.format("%1$" + mLength + "s", Long.toString(System.currentTimeMillis(), 36)).replace(' ', '0'));
+    }
+
+    /*
+     * =============================================== GETTERS AND SETTERS ==============================================
+     */
+    /*
+     * ================================================ VISUAL FUNCTIONS ================================================
+     */
+    /*
+     * ================================================ PRIVATE FUNCTIONS ===============================================
+     */
 }

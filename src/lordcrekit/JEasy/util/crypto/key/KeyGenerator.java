@@ -21,21 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util.crypto.key;
+package lordcrekit.util.crypto.key;
 
 /**
+ * Methods for key generation.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
-public interface KeySection {
+public class KeyGenerator {
 
     /*
      * ================================================ PRIMARY FUNCTIONS ===============================================
      */
     /**
-     *
-     * @param strb
-     * @return
+     * Generates an ID using the specified alphabet and length. This is not guaranteed to be unique, but probably is.
+     * <p>
+     * @param sections <code>{@link KeySection }...</code>: All the KeySections that the new ID will be made from.
+     * @return <code>{@link String }</code>: The generated ID.
      */
-    public StringBuilder generate( StringBuilder strb );
+    public static String generateID( KeySection... sections ) {
+        StringBuilder strb = new StringBuilder();
+        for ( KeySection i : sections )
+            i.generate(strb);
+
+        return strb.toString();
+    }
 }

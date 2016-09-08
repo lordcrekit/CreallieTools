@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util.attempter;
+package lordcrekit.util.attempter;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

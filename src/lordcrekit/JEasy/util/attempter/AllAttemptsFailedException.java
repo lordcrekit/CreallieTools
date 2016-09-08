@@ -21,29 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util.crypto.key;
+package lordcrekit.util.attempter;
 
 /**
- * Methods for key generation.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
-public class KeyGenerator {
+public class AllAttemptsFailedException extends Exception {
 
     /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
+     * ================================================== CONSTRUCTORS ==================================================
      */
     /**
-     * Generates an ID using the specified alphabet and length. This is not guaranteed to be unique, but probably is.
-     * <p>
-     * @param sections <code>{@link KeySection }...</code>: All the KeySections that the new ID will be made from.
-     * @return <code>{@link String }</code>: The generated ID.
+     * Constructor for AllAttemptsFailedException.
+     *
+     * @param message <code>{@link String }</code>: The detail message. The detail message is saved for later retrieval by the {@link #getMessage() } method.
+     * @param lastCause <code>{@link Throwable }</code>: The last cause (which is saved for later retrieval by the {@link #getCause() } method). (A
+     * <code>null</code> value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
-    public static String generateID( KeySection... sections ) {
-        StringBuilder strb = new StringBuilder();
-        for ( KeySection i : sections )
-            i.generate(strb);
-
-        return strb.toString();
+    public AllAttemptsFailedException( String message, Throwable lastCause ) {
+        super(message, lastCause);
     }
 }

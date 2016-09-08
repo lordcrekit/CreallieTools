@@ -21,112 +21,85 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package Creallie.Tools.util;
+package lordcrekit.util;
 
 /**
- * Because {@link Tuple } just wasn't good enough.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  * @param <T>
  * @param <G>
- * @param <U>
  */
-public final class Triple<T, G, U> {
+public final class Tuple<T, G> {
 
     /*
      * ================================================ MEMBER VARIABLES ================================================
      */
     private T mFirst;
     private G mSecond;
-    private U mThird;
 
     /*
      * ================================================== CONSTRUCTORS ==================================================
      */
     /**
-     * Constructs a new, empty Triple.
+     * Default constructor for Tuple.
      */
-    public Triple() {
-        this.mFirst = null;
-        this.mSecond = null;
-        this.mThird = null;
+    public Tuple() {
     }
 
     /**
-     * Constructs a new Triple.
      *
      * @param first
      * @param second
-     * @param third
      */
-    public Triple( T first, G second, U third ) {
+    public Tuple( T first, G second ) {
         this.mFirst = first;
         this.mSecond = second;
-        this.mThird = third;
     }
 
     /*
      * =============================================== GETTERS AND SETTERS ==============================================
      */
     /**
-     *
-     * @return
+     * 
+     * @return 
      */
     public T getFirst() {
         return this.mFirst;
     }
-
+    
     /**
-     *
-     * @param first
-     * @return
+     * 
+     * @param val
+     * @return 
      */
-    public Triple<T, G, U> setFirst( T first ) {
-        this.mFirst = first;
+    public Tuple<T,G> setFirst(T val) {
+        this.mFirst = val;
         return this;
     }
-
+    
     /**
-     *
-     * @return
+     * 
+     * @return 
      */
     public G getSecond() {
         return this.mSecond;
     }
-
+    
     /**
-     *
-     * @param second
-     * @return
+     * 
+     * @param val
+     * @return 
      */
-    public Triple<T, G, U> setSecond( G second ) {
-        this.mSecond = second;
+    public Tuple<T,G> setSecond(G val) {
+        this.mSecond = val;
         return this;
     }
-
-    /**
-     *
-     * @return
-     */
-    public U getThird() {
-        return this.mThird;
-    }
-
-    /**
-     *
-     * @param third
-     * @return
-     */
-    public Triple<T, G, U> setThird( U third ) {
-        this.mThird = third;
-        return this;
-    }
-
+    
     /*
      * ================================================ VISUAL FUNCTIONS ================================================
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+      throw new UnsupportedOperationException();
     }
 }
