@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.util.crypto.key;
+package lordcrekit.JEasy.util.crypto.key;
 
 import java.util.Random;
 

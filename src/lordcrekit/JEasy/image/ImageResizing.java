@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.image;
+package lordcrekit.JEasy.image;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
