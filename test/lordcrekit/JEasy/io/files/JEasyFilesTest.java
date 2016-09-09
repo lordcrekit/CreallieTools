@@ -82,6 +82,20 @@ public class JEasyFilesTest {
 				Files.createFile(Paths.get(nested.toString(), "file" + i + ".txt"));
 			output.put(title, base);
 		}
+		{
+			String title = "deep nested dirs only";
+			Path base = Files.createDirectory(Paths.get(root.toString(), title));
+			Files.createDirectories(Paths.get(base.toString(), "01", "02", "03", "04"));
+			output.put(title, base);
+		}
+		{
+			String title = "deep nested with file";
+			Path base = Files.createDirectory(Paths.get(root.toString(), title));
+			Path nested = Files.createDirectories(Paths.get(base.toString(), "01", "02", "03", "04"));
+			Files.createFile(Paths.get(nested.toString(), "txt.txt"));
+			output.put(title, base);
+		}
+
 		return output;
 	}
 
