@@ -34,12 +34,12 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * CreaProperties is a replacement for the {@link Properties } class. Thread safe. It can actually be used to quickly load, add
+ * JEasyProperties is a replacement for the {@link Properties } class. Thread safe. It can actually be used to quickly load, add
  * to, and save files.
  *
  * @author William A Norman (Lordcrekit@gmail.com, normanwi@msu.edu)
  */
-public class CreaProperties {
+public class JEasyProperties {
 
     /*
      * ================================================ MEMBER VARIABLES ================================================
@@ -52,7 +52,7 @@ public class CreaProperties {
     /**
      * Default constructor for CreaProperties.
      */
-    public CreaProperties() {
+    public JEasyProperties() {
         this.properties = Collections.synchronizedMap(new HashMap<>());
     }
 
@@ -61,7 +61,7 @@ public class CreaProperties {
      *
      * @param orig The object to copy.
      */
-    public CreaProperties( CreaProperties orig ) {
+    public JEasyProperties( JEasyProperties orig ) {
         this.properties = new HashMap<>();
         for ( String key : orig.getProperties().keySet() )
             this.properties.put(key, orig.getProperties().get(key));
@@ -72,7 +72,7 @@ public class CreaProperties {
      *
      * @param props The Properties object to copy.
      */
-    public CreaProperties( Properties props ) {
+    public JEasyProperties( Properties props ) {
         this.properties = new HashMap<>();
         for ( Object key : props.keySet() )
             this.properties.put(key.toString(), props.get(key).toString());
@@ -118,7 +118,7 @@ public class CreaProperties {
      * @param value The value being saved to the key.
      * @return Pointer back to this object.
      */
-    public CreaProperties setProperty( String key, String value ) {
+    public JEasyProperties setProperty( String key, String value ) {
         this.properties.put(key, value);
         return this;
     }
@@ -134,7 +134,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to save.
      */
-    public CreaProperties save( OutputStream outstream, String comments ) throws IOException {
+    public JEasyProperties save( OutputStream outstream, String comments ) throws IOException {
         save(new BufferedWriter(new OutputStreamWriter(outstream)), comments);
         return this;
     }
@@ -147,7 +147,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to save.
      */
-    public CreaProperties save( Writer writer, String comments ) throws IOException {
+    public JEasyProperties save( Writer writer, String comments ) throws IOException {
         save(new BufferedWriter(writer), comments);
         return this;
     }
@@ -161,7 +161,7 @@ public class CreaProperties {
      * @throws IOException If something goes wrong while attempting to save.
      */
     @Deprecated
-    public CreaProperties save( File file, String comments ) throws IOException {
+    public JEasyProperties save( File file, String comments ) throws IOException {
         try ( BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file))) ) {
             save(writer, comments);
         }
@@ -176,7 +176,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to save.
      */
-    public CreaProperties save( Path path, String comments ) throws IOException {
+    public JEasyProperties save( Path path, String comments ) throws IOException {
         try ( BufferedWriter writer = Files.newBufferedWriter(path) ) {
             save(writer, comments);
         }
@@ -190,7 +190,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to load.
      */
-    public CreaProperties load( InputStream instream ) throws IOException {
+    public JEasyProperties load( InputStream instream ) throws IOException {
         load(new BufferedReader(new InputStreamReader(instream)));
         return this;
     }
@@ -202,7 +202,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to load.
      */
-    public CreaProperties load( Reader reader ) throws IOException {
+    public JEasyProperties load( Reader reader ) throws IOException {
         load(new BufferedReader(reader));
         return this;
     }
@@ -215,7 +215,7 @@ public class CreaProperties {
      * @throws IOException If something goes wrong while attempting to load.
      */
     @Deprecated
-    public CreaProperties load( File file ) throws IOException {
+    public JEasyProperties load( File file ) throws IOException {
         try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
             load(reader);
         }
@@ -229,7 +229,7 @@ public class CreaProperties {
      * @return Pointer back to this object.
      * @throws IOException If something goes wrong while attempting to read the file.
      */
-    public CreaProperties load( Path path ) throws IOException {
+    public JEasyProperties load( Path path ) throws IOException {
         try ( BufferedReader reader = Files.newBufferedReader(path) ) {
             load(reader);
         }
