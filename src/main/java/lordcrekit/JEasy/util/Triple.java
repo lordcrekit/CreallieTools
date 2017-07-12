@@ -26,107 +26,124 @@ package lordcrekit.JEasy.util;
 /**
  * Because {@link Tuple } just wasn't good enough.
  *
- * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  * @param <T>
+ *     The type of the first value.
  * @param <G>
+ *     The type of the second value.
  * @param <U>
+ *     The type of the third value.
+ * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public final class Triple<T, G, U> {
 
-    /*
-     * ================================================ MEMBER VARIABLES ================================================
-     */
-    private T mFirst;
-    private G mSecond;
-    private U mThird;
+  public T First;
+  public G Second;
+  public U Third;
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Constructs a new, empty Triple.
-     */
-    public Triple() {
-        this.mFirst = null;
-        this.mSecond = null;
-        this.mThird = null;
-    }
+  /**
+   * Constructs a new, empty Triple.
+   */
+  public Triple() {
+    this.First = null;
+    this.Second = null;
+    this.Third = null;
+  }
 
-    /**
-     * Constructs a new Triple.
-     *
-     * @param first
-     * @param second
-     * @param third
-     */
-    public Triple( T first, G second, U third ) {
-        this.mFirst = first;
-        this.mSecond = second;
-        this.mThird = third;
-    }
+  /**
+   * Constructs a new Triple with set values.
+   *
+   * @param first
+   *     The initial first value for the Triple.
+   * @param second
+   *     The initial second value for the Triple.
+   * @param third
+   *     The initial third value for the Triple.
+   */
+  public Triple(T first, G second, U third) {
+    this.First = first;
+    this.Second = second;
+    this.Third = third;
+  }
 
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /**
-     *
-     * @return
-     */
-    public T getFirst() {
-        return this.mFirst;
-    }
+  /**
+   * Gets the first value in the Triple.
+   *
+   * @return The first value in the Triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public T getFirst() {
+    return this.First;
+  }
 
-    /**
-     *
-     * @param first
-     * @return
-     */
-    public Triple<T, G, U> setFirst( T first ) {
-        this.mFirst = first;
-        return this;
-    }
+  /**
+   * Sets the first value in the Triple.
+   *
+   * @param first
+   *     The new first value for the Triple.
+   * @return A pointer back to this Triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public Triple<T, G, U> setFirst(T first) {
+    this.First = first;
+    return this;
+  }
 
-    /**
-     *
-     * @return
-     */
-    public G getSecond() {
-        return this.mSecond;
-    }
+  /**
+   * Gets the second value in the Triple.
+   *
+   * @return The second value in the triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public G getSecond() {
+    return this.Second;
+  }
 
-    /**
-     *
-     * @param second
-     * @return
-     */
-    public Triple<T, G, U> setSecond( G second ) {
-        this.mSecond = second;
-        return this;
-    }
+  /**
+   * Set the second value in the Triple.
+   *
+   * @param second
+   *     The new Second value for the Triple.
+   * @return A pointer back to the Triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public Triple<T, G, U> setSecond(G second) {
+    this.Second = second;
+    return this;
+  }
 
-    /**
-     *
-     * @return
-     */
-    public U getThird() {
-        return this.mThird;
-    }
+  /**
+   * Get the third value in the Triple.
+   *
+   * @return The third value in the Triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public U getThird() {
+    return this.Third;
+  }
 
-    /**
-     *
-     * @param third
-     * @return
-     */
-    public Triple<T, G, U> setThird( U third ) {
-        this.mThird = third;
-        return this;
-    }
+  /**
+   * Set the third value in the Triple.
+   *
+   * @param third
+   *     The new third value for the Triple.
+   * @return A pointer back to the Triple.
+   * @deprecated Just use public member
+   */
+  @Deprecated
+  public Triple<T, G, U> setThird(U third) {
+    this.Third = third;
+    return this;
+  }
 
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    @Override
-    public String toString() {
-        throw new UnsupportedOperationException();
-    }
+  @Override
+  public String toString() {
+    return '<' + First.toString()
+        + ',' + Second.toString()
+        + ',' + Third.toString() + '>';
+  }
 }

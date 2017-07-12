@@ -24,82 +24,90 @@
 package lordcrekit.JEasy.util;
 
 /**
+ * A tuple is a pointer to two different objects.
  *
- * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  * @param <T>
+ *     The type of the first value in the Tuple.
  * @param <G>
+ *     The type of the second value in the Tuple.
+ * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public final class Tuple<T, G> {
 
-    /*
-     * ================================================ MEMBER VARIABLES ================================================
-     */
-    private T mFirst;
-    private G mSecond;
+  private T First;
+  private G Second;
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Default constructor for Tuple.
-     */
-    public Tuple() {
-    }
+  /**
+   * Constructs a new, empty Tuple.
+   */
+  public Tuple() {
+  }
 
-    /**
-     *
-     * @param first
-     * @param second
-     */
-    public Tuple( T first, G second ) {
-        this.mFirst = first;
-        this.mSecond = second;
-    }
+  /**
+   * Constructs a new Tuple with the provided values.
+   *
+   * @param first
+   *     The initial first value for the Tuple.
+   * @param second
+   *     The initial second value for the Tuple.
+   */
+  public Tuple(T first, G second) {
+    this.First = first;
+    this.Second = second;
+  }
 
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /**
-     * 
-     * @return 
-     */
-    public T getFirst() {
-        return this.mFirst;
-    }
-    
-    /**
-     * 
-     * @param val
-     * @return 
-     */
-    public Tuple<T,G> setFirst(T val) {
-        this.mFirst = val;
-        return this;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public G getSecond() {
-        return this.mSecond;
-    }
-    
-    /**
-     * 
-     * @param val
-     * @return 
-     */
-    public Tuple<T,G> setSecond(G val) {
-        this.mSecond = val;
-        return this;
-    }
-    
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    @Override
-    public String toString() {
-      throw new UnsupportedOperationException();
-    }
+  /**
+   * Gets the first value in the Tuple.
+   *
+   * @return The first value in the Tuple.
+   * @deprecated Just use the public member.
+   */
+  @Deprecated
+  public T getFirst() {
+    return this.First;
+  }
+
+  /**
+   * Sets the first value in the Tuple.
+   *
+   * @param val
+   *     The new first value for the Tuple.
+   * @return A pointer back to the Tuple.
+   * @deprecated Just use the public member.
+   */
+  @Deprecated
+  public Tuple<T, G> setFirst(T val) {
+    this.First = val;
+    return this;
+  }
+
+  /**
+   * Gets the second value in the Tuple.
+   *
+   * @return The second value in the Tuple.
+   * @deprecated Just use the public member.
+   */
+  @Deprecated
+  public G getSecond() {
+    return this.Second;
+  }
+
+  /**
+   * Sets the second value in the Tuple.
+   *
+   * @param val
+   *     The new second value for the Tuple.
+   * @return A pointer back to the Tuple.
+   * @deprecated Just use the public member.
+   */
+  @Deprecated
+  public Tuple<T, G> setSecond(G val) {
+    this.Second = val;
+    return this;
+  }
+
+  @Override
+  public String toString() {
+    return '<' + First.toString() + ',' + Second.toString() + '>';
+  }
 }
