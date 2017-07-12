@@ -26,57 +26,48 @@ package lordcrekit.JEasy.util.crypto.key;
 import java.util.Random;
 
 /**
+ * Generates a random series of characters for the key.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class RandomSection implements KeySection {
 
-    /*
-     * ================================================ STATIC VARIABLES =================================================
-     */
-    public final static int DEFAULT_LENGTH = 16;
-    public final static String DEFAULT_ALPHABET = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
-    public final static String LOWERCASE_ALPHABET = "qwertyuiopasdfghjklzxcvbnm1234567890";
+  public final static int DEFAULT_LENGTH = 16;
+  public final static String DEFAULT_ALPHABET = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+  public final static String LOWERCASE_ALPHABET = "qwertyuiopasdfghjklzxcvbnm1234567890";
 
-    /*
-     * ================================================ MEMBER VARIABLES ================================================
-     */
-    private final Random mRNG;
-    private final int mLength;
-    private final String mAlphabet;
+  private final static Random RNG = new Random();
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Constructs a new RandomSection.
-     *
-     * @param length
-     * @param alphabet
-     */
-    public RandomSection( int length, String alphabet ) {
-        mRNG = new Random();
-        mLength = length;
-        mAlphabet = alphabet;
-    }
+  private final int length;
+  private final String alphabet;
 
-    /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-     */
-    @Override
-    public StringBuilder generate(StringBuilder strb) {
-        for ( int i = 0; i < mLength; i++ )
-            strb.append(mAlphabet.charAt(mRNG.nextInt(mAlphabet.length())));
-        return strb;
-    }
+  /**
+   * Constructs a new RandomSection that generates a key section from the given
+   * alphabet of the given length.
+   *
+   * @param length
+   *     The length of the section to generate.
+   * @param alphabet
+   *     The alphabet to generate the section from.
+   */
+  public RandomSection(final int length, final String alphabet) {
+    this.length = length;
+    this.alphabet = alphabet;
+  }
 
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    /*
-     * ================================================ PRIVATE FUNCTIONS ===============================================
-     */
+  /**
+   * Constructs a new RandomSection with the default length and alphabet. The
+   * default is 16 long, all uppercase/lowercase ASCII letters + digits.
+   */
+  public RandomSection() {
+    this.length = RandomSection.DEFAULT_LENGTH;
+    this.alphabet = RandomSection.DEFAULT_ALPHABET;
+  }
+
+  @Override
+  public StringBuilder generate(final StringBuilder strb) {
+    for (int i = 0; i < length; i++)
+      strb.append(alphabet.charAt(RNG.nextInt(alphabet.length())));
+    return strb;
+  }
 }

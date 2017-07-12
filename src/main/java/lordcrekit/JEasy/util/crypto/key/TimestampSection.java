@@ -24,46 +24,47 @@
 package lordcrekit.JEasy.util.crypto.key;
 
 /**
+ * Builds a timestamp into a key section. Always gives the same (specified)
+ * length, padded by 0's. Always base 36.
+ * <p>
+ * Default lengths were set on 2017-07-11T21:49 and should be valid until
+ * 5188-04-22.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class TimestampSection implements KeySection {
 
-    /*
-     * ================================================ MEMBER VARIABLES ================================================
-     */
-    private final int mLength;
+  public final static int DEFAULT_36_LENGTH = 9;
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Constructs a new TimestampSection.
-     *
-     * @param length
-     */
-    public TimestampSection( int length ) {
-        mLength = length;
-    }
+  private final int length;
 
-    /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-     */
-    @Override
-    public StringBuilder generate( StringBuilder strb ) {
-        if ( Long.toHexString(mLength).length() > mLength )
-            throw new RuntimeException("Length not enough!");
-        else
-            return strb.append(String.format("%1$" + mLength + "s", Long.toString(System.currentTimeMillis(), 36)).replace(' ', '0'));
-    }
+  /**
+   * Constructs a new TimestampSection that pads to the given length.
+   *
+   * @param length
+   *     The length to pad to Shorter than 8 and it probably won't work (unless
+   *     your clock is really slow).
+   */
+  public TimestampSection(final int length) {
+    this.length = length;
+  }
 
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    /*
-     * ================================================ PRIVATE FUNCTIONS ===============================================
-     */
+  /**
+   * Constructs a new TimestampSection that pads to 9 spaces. It will work until
+   * the year 5188.
+   */
+  public TimestampSection() {
+    this.length = TimestampSection.DEFAULT_36_LENGTH;
+  }
+
+  @Override
+  public StringBuilder generate(final StringBuilder strb) {
+    final String convert = Long.toString(System.currentTimeMillis(), 36);
+    if (convert.length() > length)
+      throw new RuntimeException("Length not enough!");
+    else
+      return strb.append(
+          String.format("%1$" + length + "s", convert)
+              .replace(' ', '0'));
+  }
 }

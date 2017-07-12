@@ -24,26 +24,32 @@
 package lordcrekit.JEasy.util.crypto.key;
 
 /**
- * Methods for key generation.
+ * Generates IDs/keys based on given criteria (in the form of KeySections). Use
+ * it to generate structured random IDs.
+ * <p>
+ * You might use it to generate inproc zmq addresses, for example.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class KeyGenerator {
 
-    /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-     */
-    /**
-     * Generates an ID using the specified alphabet and length. This is not guaranteed to be unique, but probably is.
-     * <p>
-     * @param sections <code>{@link KeySection }...</code>: All the KeySections that the new ID will be made from.
-     * @return <code>{@link String }</code>: The generated ID.
-     */
-    public static String generateID( KeySection... sections ) {
-        StringBuilder strb = new StringBuilder();
-        for ( KeySection i : sections )
-            i.generate(strb);
+  /**
+   * Generates IDs of the structure defined by passed KeySections. This is not
+   * guaranteed to be unique (especially if you use no random KeySections!).
+   *
+   * @param sections
+   *     All the KeySections that the new ID will be made from.
+   * @return The generated ID.
+   * @see KeySection
+   * @see RandomSection
+   * @see StringSection
+   * @see TimestampSection
+   */
+  public static final String generateID(KeySection... sections) {
+    StringBuilder strb = new StringBuilder();
+    for (KeySection i : sections)
+      i.generate(strb);
 
-        return strb.toString();
-    }
+    return strb.toString();
+  }
 }

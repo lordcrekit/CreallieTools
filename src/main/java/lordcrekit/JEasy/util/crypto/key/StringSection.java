@@ -24,43 +24,26 @@
 package lordcrekit.JEasy.util.crypto.key;
 
 /**
+ * Builds a keysection as a specific series of characters.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class StringSection implements KeySection {
 
-    /*
-     * ================================================ MEMBER VARIABLES ================================================
-     */
-    private final String mString;
+  private final String string;
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Constructor for StringSection.
-     *
-     * @param string
-     */
-    public StringSection( String string ) {
-        mString = string;
-    }
+  /**
+   * Constructor for StringSection.
+   *
+   * @param string
+   *     The specific String to build into the key.
+   */
+  public StringSection(String string) {
+    this.string = string;
+  }
 
-    /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-     */
-    @Override
-    public StringBuilder generate( StringBuilder strb ) {
-        return strb.append(mString);
-    }
-
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    /*
-     * ================================================ PRIVATE FUNCTIONS ===============================================
-     */
+  @Override
+  public StringBuilder generate(StringBuilder strb) {
+    return strb.append(string);
+  }
 }
