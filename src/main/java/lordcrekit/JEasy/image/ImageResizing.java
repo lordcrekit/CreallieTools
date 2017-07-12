@@ -27,58 +27,48 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
- * Con
+ * Special image operations.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class ImageResizing {
 
-    /*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-     */
     /**
+     * Effectively a copy constructor for BufferedImage.
      *
-     * @param orig
-     * @return
+     * @param orig The image to copy.
+     * @return The copied image.
      */
-    public static BufferedImage deepCopy( Image orig ) {
+    public static BufferedImage deepCopy(Image orig) {
         throw new UnsupportedOperationException();
     }
 
     /**
+     * Scale down an image, preserving aspect ratio, until both width and height are at most the given values.
      *
-     * @param image
-     * @param maxWidth
-     * @param maxHeight
-     * @return
+     * @param image The image to scale.
+     * @param maxWidth The maximum width for the final image.
+     * @param maxHeight  The maximum height for the final image.
+     * @return The scaled image.
      */
-    public static Image scaleDownImage( BufferedImage image, int maxWidth, int maxHeight ) {    // TODO: Run this through the gauntlet.
-        if ( image.getWidth() <= maxWidth && image.getHeight() <= maxHeight ) // Neither is too large
+    public static Image scaleDownImage(BufferedImage image, int maxWidth, int maxHeight) {    // TODO: Run this through the gauntlet.
+        if (image.getWidth() <= maxWidth && image.getHeight() <= maxHeight) // Neither is too large
             return image;
-        else if ( image.getWidth() > image.getHeight() )   // Width is larger
+        else if (image.getWidth() > image.getHeight())   // Width is larger
             return image.getScaledInstance(maxWidth, (int) ((double) maxWidth / (double) image.getWidth() * (double) image.getHeight()), BufferedImage.SCALE_DEFAULT);
         else    // Height is larger
             return image.getScaledInstance((int) ((double) maxHeight / (double) image.getHeight() * (double) image.getWidth()), maxHeight, BufferedImage.SCALE_DEFAULT);
     }
 
     /**
+     * Scale up an image, preserving aspect ratio, until both width and height are at least the values given.
      *
-     * @param image
-     * @param minWidth
-     * @param minHeight
-     * @return
+     * @param image The image to scale.
+     * @param minWidth The minimum width for the final image.
+     * @param minHeight The maximum height for the final image.
+     * @return The scaled image.
      */
-    public static Image scaleUpImage( BufferedImage image, int minWidth, int minHeight ) {
+    public static Image scaleUpImage(BufferedImage image, int minWidth, int minHeight) {
         throw new UnsupportedOperationException();
     }
-
-    /*
-     * =============================================== GETTERS AND SETTERS ==============================================
-     */
-    /*
-     * ================================================ VISUAL FUNCTIONS ================================================
-     */
-    /*
-     * ================================================ PRIVATE FUNCTIONS ===============================================
-     */
 }

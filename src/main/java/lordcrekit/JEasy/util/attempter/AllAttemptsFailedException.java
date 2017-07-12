@@ -23,23 +23,30 @@
  */
 package lordcrekit.JEasy.util.attempter;
 
+import java.util.concurrent.Callable;
+
 /**
+ * Thrown by {@link Attempter#attemptMultiple(Callable, int)} when every attempt
+ * fails. The last exception will be wrapped in an AllAttemptsFailedException
+ * and thrown.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
 public class AllAttemptsFailedException extends Exception {
 
-    /*
-     * ================================================== CONSTRUCTORS ==================================================
-     */
-    /**
-     * Constructor for AllAttemptsFailedException.
-     *
-     * @param message <code>{@link String }</code>: The detail message. The detail message is saved for later retrieval by the {@link #getMessage() } method.
-     * @param lastCause <code>{@link Throwable }</code>: The last cause (which is saved for later retrieval by the {@link #getCause() } method). (A
-     * <code>null</code> value is permitted, and indicates that the cause is nonexistent or unknown.)
-     */
-    public AllAttemptsFailedException( String message, Throwable lastCause ) {
-        super(message, lastCause);
-    }
+  /**
+   * Constructs a new AllAttemptsFailedException.
+   *
+   * @param message
+   *     The detail message (which is saved for later retrieval by the {@link
+   *     #getMessage()} method).
+   * @param lastCause
+   *     The last cause before the {@link Attempter#attemptMultiple(Callable,
+   *     int)} gave up. Saved for later retrieval by the {@link #getCause()}
+   *     method).
+   * @see Attempter#attemptMultiple(Callable, int)
+   */
+  AllAttemptsFailedException(String message, Throwable lastCause) {
+    super(message, lastCause);
+  }
 }
