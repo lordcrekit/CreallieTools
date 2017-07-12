@@ -40,126 +40,146 @@ import java.util.logging.Logger;
  */
 public class JEasyFiles {
 
-	/*
-     * ================================================ PRIMARY FUNCTIONS ===============================================
-	 */
-	/**
-	 * Copies the given directory to the desired destination. The directories name will be overwritten with the destinations name,
-	 * but all files inside of the directory will maintain their names and structure.
-	 *
-	 * @param directory   The directory you wish to copy.
-	 * @param destination The destination you wish to copy to.
-	 * @throws IOException If something goes wrong trying to copy the files.
-	 */
-	@Deprecated
-	public static void copyDirectory( File directory, File destination ) throws IOException {
-		if ( directory.isDirectory() ) {
-			Files.createDirectories(destination.toPath());
-			for ( File i : directory.listFiles() )
-				copyDirectory(i, new File(destination + File.separator + i.getName()));
-		} else
-			Files.copy(directory.toPath(), destination.toPath());
-	}
+  /**
+   * Copies the given directory to the desired destination. The directories name
+   * will be overwritten with the destinations name, but all files inside of the
+   * directory will maintain their names and structure.
+   *
+   * @param directory
+   *     The directory you wish to copy.
+   * @param destination
+   *     The destination you wish to copy to.
+   * @throws IOException
+   *     If something goes wrong trying to copy the files.
+   */
+  @Deprecated
+  public static void copyDirectory(File directory, File destination) throws IOException {
+    if (directory.isDirectory()) {
+      Files.createDirectories(destination.toPath());
+      for (File i : directory.listFiles())
+        copyDirectory(i, new File(destination + File.separator + i.getName()));
+    } else
+      Files.copy(directory.toPath(), destination.toPath());
+  }
 
-	/**
-	 *
-	 * @param source
-	 * @param destination
-	 * @throws IOException
-	 */
-	public static void copyDirectory( Path source, Path destination ) throws IOException {
-		copyDirectory(source.toFile(), destination.toFile());
-	}
+  /**
+   * Copies the given directory to the desired destination. The directories name
+   * will be overwritten with the destinations name, but all files inside of the
+   * directory will maintain their names and structure.
+   *
+   * @param source
+   *     The directory to copy.
+   * @param destination
+   *     The destination to copy the directory to.
+   * @throws IOException
+   *     If something goes wrong trying to copy the files.
+   */
+  public static void copyDirectory(Path source, Path destination) throws IOException {
+    copyDirectory(source.toFile(), destination.toFile());
+  }
 
-	/**
-	 * Deletes an entire directory and all it's sub folders and files.
-	 *
-	 * @param directory The directory you wish to delete.
-	 * @throws IOException If something goes wrong trying to delete the files.
-	 */
-	@Deprecated
-	public static void deleteDirectory( File directory ) throws IOException {
-		if ( directory.isDirectory() )
-			for ( File i : directory.listFiles() )
-				deleteDirectory(i);
-		Files.delete(directory.toPath());
-	}
+  /**
+   * Deletes an entire directory and all it's sub folders and files.
+   *
+   * @param directory
+   *     The directory you wish to delete.
+   * @throws IOException
+   *     If something goes wrong trying to delete the files.
+   */
+  @Deprecated
+  public static void deleteDirectory(File directory) throws IOException {
+    if (directory.isDirectory())
+      for (File i : directory.listFiles())
+        deleteDirectory(i);
+    Files.delete(directory.toPath());
+  }
 
-	public static void deleteDirectory( Path directory ) throws IOException {
-		deleteDirectory(directory.toFile());
-	}
+  /**
+   * Deletes an entire directory and all it's sub folders and files.
+   *
+   * @param directory
+   *     The directory you wish to delete.
+   * @throws IOException
+   *     If something goes wrong trying to delete the files.
+   */
+  public static void deleteDirectory(Path directory) throws IOException {
+    deleteDirectory(directory.toFile());
+  }
 
-	/**
-	 *
-	 * @param dir1
-	 * @param dir2
-	 * @return
-	 * @throws java.io.IOException
-	 */
-	public static boolean isDirectoryStructureEqual( Path dir1, Path dir2 ) throws IOException {
-		return dir_to_map(dir1.toString().length(), dir1).equals(dir_to_map(dir2.toString().length(), dir2));
-	}
+  /**
+   * @param dir1
+   * @param dir2
+   * @return
+   * @throws java.io.IOException
+   */
+  public static boolean isDirectoryStructureEqual(Path dir1, Path dir2) throws IOException {
+    return dir_to_map(dir1.toString().length(), dir1).equals(dir_to_map(dir2.toString().length(), dir2));
+  }
 
-	/**
-	 * 
-	 * @param root
-	 * @param dir
-	 * @return
-	 * @throws IOException 
-	 */
-	private static Map<String, Boolean> dir_to_map( int root, Path dir ) throws IOException {
-		Map<String, Boolean> output = new HashMap<>();
-		final AtomicReference<IOException> ref = new AtomicReference<>();
-		Files.list(dir).forEach((Path p) -> {
-			boolean isDir = Files.isDirectory(p) ;
-			if ( isDir )
-				try {
-					output.putAll(dir_to_map(root, p));
-				} catch ( IOException ex ) {
-					ref.set(ex);
-				}
-			output.put(p.toString().substring(root), isDir);
-		});
-		if ( ref.get() != null )
-			throw ref.get();
-		return output;
-	}
 
-	/*
-     * =============================================== GETTERS AND SETTERS ==============================================
-	 */
-	/**
-	 * Gets the App Data file pathname for this operating system.
-	 *
-	 * @return The pathname to the App Data file for this OS.
-	 * @throws IOException
-	 */
-	public static String getAppData() throws IOException {
-		String OS = (System.getProperty("os.name")).toUpperCase();
-		if ( OS.contains("WIN") )
-			return System.getenv("AppData");
-		else if ( OS.contains("MAC") )
-			return System.getProperty("user.home") + "/Library/Application " + "Support";
-		else if ( OS.contains("NUX") )
-			return System.getProperty("user.home");
-		else
-			throw new IOException("Unkown operating system!");
-	}
+  /**
+   * Gets the App Data file pathname for this operating system.
+   *
+   * @return The pathname to the App Data file for this OS.
+   * @throws IOException
+   */
+  public static String getAppData() throws IOException {
+    String OS = (System.getProperty("os.name")).toUpperCase();
+    if (OS.contains("WIN"))
+      return System.getenv("AppData");
+    else if (OS.contains("MAC"))
+      return System.getProperty("user.home") + "/Library/Application " + "Support";
+    else if (OS.contains("NUX"))
+      return System.getProperty("user.home");
+    else
+      throw new IOException("Unkown operating system!");
+  }
 
-	/**
-	 * Gets the App Data file for this operating system.
-	 *
-	 * @return The App Data file for this OS.
-	 * @throws IOException If the OS is unknown.
-	 */
-	public static File getAppDataFile() throws IOException {
-		return new File(getAppData());
-	}
+  /**
+   * Gets the App Data file for this operating system.
+   *
+   * @return The App Data file for this OS.
+   * @throws IOException
+   *     If the OS is unknown.
+   */
+  public static Path getAppDataPath() throws IOException {
+    return getAppDataFile().toPath();
+  }
 
-	/*
-     * ================================================ VISUAL FUNCTIONS ================================================
-	 */
- /*
-     * ================================================ PRIVATE FUNCTIONS ===============================================
-	 */
+  /**
+   * Gets the App Data file for this operating system.
+   *
+   * @return The App Data file for this OS.
+   * @throws IOException
+   *     If the OS is unknown.
+   * @deprecated Use {@link #getAppDataPath()}
+   */
+  @Deprecated
+  public static File getAppDataFile() throws IOException {
+    return new File(getAppData());
+  }
+
+  /**
+   * @param root
+   * @param dir
+   * @return
+   * @throws IOException
+   */
+  private static Map<String, Boolean> dir_to_map(int root, Path dir) throws IOException {
+    Map<String, Boolean> output = new HashMap<>();
+    final AtomicReference<IOException> ref = new AtomicReference<>();
+    Files.list(dir).forEach((Path p) -> {
+      boolean isDir = Files.isDirectory(p);
+      if (isDir)
+        try {
+          output.putAll(dir_to_map(root, p));
+        } catch (IOException ex) {
+          ref.set(ex);
+        }
+      output.put(p.toString().substring(root), isDir);
+    });
+    if (ref.get() != null)
+      throw ref.get();
+    return output;
+  }
 }
