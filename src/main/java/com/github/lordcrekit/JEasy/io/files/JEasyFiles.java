@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.JEasy.io.files;
+package com.github.lordcrekit.JEasy.io.files;
 
 import java.io.File;
 import java.io.IOException;

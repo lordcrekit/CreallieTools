@@ -21,29 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.JEasy.util.crypto.key;
+package com.github.lordcrekit.JEasy.util.crypto.key;
 
 /**
- * Builds a keysection as a specific series of characters.
+ * Builds a timestamp into a key section. Always gives the same (specified)
+ * length, padded by 0's. Always base 36.
+ * <p>
+ * Default lengths were set on 2017-07-11T21:49 and should be valid until
+ * 5188-04-22.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
-public class StringSection implements KeySection {
+public class TimestampSection implements KeySection {
 
-  private final String string;
+  public final static int DEFAULT_36_LENGTH = 9;
+
+  private final int length;
 
   /**
-   * Constructor for StringSection.
+   * Constructs a new TimestampSection that pads to the given length.
    *
-   * @param string
-   *     The specific String to build into the key.
+   * @param length
+   *     The length to pad to Shorter than 8 and it probably won't work (unless
+   *     your clock is really slow).
    */
-  public StringSection(String string) {
-    this.string = string;
+  public TimestampSection(final int length) {
+    this.length = length;
+  }
+
+  /**
+   * Constructs a new TimestampSection that pads to 9 spaces. It will work until
+   * the year 5188.
+   */
+  public TimestampSection() {
+    this.length = TimestampSection.DEFAULT_36_LENGTH;
   }
 
   @Override
-  public StringBuilder generate(StringBuilder strb) {
-    return strb.append(string);
+  public StringBuilder generate(final StringBuilder strb) {
+    final String convert = Long.toString(System.currentTimeMillis(), 36);
+    if (convert.length() > length)
+      throw new RuntimeException("Length not enough!");
+    else
+      return strb.append(
+          String.format("%1$" + length + "s", convert)
+              .replace(' ', '0'));
   }
 }

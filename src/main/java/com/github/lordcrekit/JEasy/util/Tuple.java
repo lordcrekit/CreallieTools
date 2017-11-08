@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.JEasy.util;
+package com.github.lordcrekit.JEasy.util;
 
 /**
  * A tuple is a pointer to two different objects.

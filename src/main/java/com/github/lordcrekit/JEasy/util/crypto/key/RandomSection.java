@@ -21,50 +21,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lordcrekit.JEasy.util.crypto.key;
+package com.github.lordcrekit.JEasy.util.crypto.key;
+
+import java.util.Random;
 
 /**
- * Builds a timestamp into a key section. Always gives the same (specified)
- * length, padded by 0's. Always base 36.
- * <p>
- * Default lengths were set on 2017-07-11T21:49 and should be valid until
- * 5188-04-22.
+ * Generates a random series of characters for the key.
  *
  * @author William A. Norman (LordCrekit@gmail.com, normanwi@msu.edu)
  */
-public class TimestampSection implements KeySection {
+public class RandomSection implements KeySection {
 
-  public final static int DEFAULT_36_LENGTH = 9;
+  public final static int DEFAULT_LENGTH = 16;
+  public final static String DEFAULT_ALPHABET = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+  public final static String LOWERCASE_ALPHABET = "qwertyuiopasdfghjklzxcvbnm1234567890";
+
+  private final static Random RNG = new Random();
 
   private final int length;
+  private final String alphabet;
 
   /**
-   * Constructs a new TimestampSection that pads to the given length.
+   * Constructs a new RandomSection that generates a key section from the given
+   * alphabet of the given length.
    *
    * @param length
-   *     The length to pad to Shorter than 8 and it probably won't work (unless
-   *     your clock is really slow).
+   *     The length of the section to generate.
+   * @param alphabet
+   *     The alphabet to generate the section from.
    */
-  public TimestampSection(final int length) {
+  public RandomSection(final int length, final String alphabet) {
     this.length = length;
+    this.alphabet = alphabet;
   }
 
   /**
-   * Constructs a new TimestampSection that pads to 9 spaces. It will work until
-   * the year 5188.
+   * Constructs a new RandomSection with the default length and alphabet. The
+   * default is 16 long, all uppercase/lowercase ASCII letters + digits.
    */
-  public TimestampSection() {
-    this.length = TimestampSection.DEFAULT_36_LENGTH;
+  public RandomSection() {
+    this.length = RandomSection.DEFAULT_LENGTH;
+    this.alphabet = RandomSection.DEFAULT_ALPHABET;
   }
 
   @Override
   public StringBuilder generate(final StringBuilder strb) {
-    final String convert = Long.toString(System.currentTimeMillis(), 36);
-    if (convert.length() > length)
-      throw new RuntimeException("Length not enough!");
-    else
-      return strb.append(
-          String.format("%1$" + length + "s", convert)
-              .replace(' ', '0'));
+    for (int i = 0; i < length; i++)
+      strb.append(alphabet.charAt(RNG.nextInt(alphabet.length())));
+    return strb;
   }
 }

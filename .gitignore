@@ -1,5 +1,4 @@
-/build/
-/dist/
+\.gradle/
 
 nbproject/private/
 nbproject/private/private.properties
@@ -8,3 +7,6 @@ nbproject/private/private.properties
 
 \.idea/
 JEasy.iml
+
+/build/
+/dist/
